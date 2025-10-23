@@ -1,0 +1,30 @@
+import os 
+from dataclasses import dataclass
+
+
+@dataclass
+
+class Informacoes:
+    Nome: str
+    E_mail: str
+    Telefone: str
+    Endereco: str
+    
+    
+    
+    def mostradados(self):
+
+        print("""   Exibindo Dados \n""")
+
+        print(f"Seu nome é: {self.Nome}")
+        print(f"Seu email é: {self.E_mail}")
+        print(f"Seu Telefone é: {self.Telefone}")
+        print(f"Seu Endereço é: {self.Endereco}")
+            
+
+Pessoa1 = Informacoes(Nome=input("Digite seu nome: "),
+                    E_mail= str(input("Digite seu E-mail: ")),
+                    Telefone= str(input("Digite seu Telefone: ")),
+                    Endereco= str(input("Digite seu Endereço: ")))
+
+Pessoa1.mostradados()
