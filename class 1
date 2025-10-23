@@ -1,0 +1,12 @@
+from dataclasses import dataclass
+
+@dataclass
+class Pessoa:
+    nome: str
+    idade: int
+    peso: float
+    altura: float
+
+Nome = Pessoa(nome="Gabriel", idade= 15,peso="78 kg", altura=1.78)
+
+print(f"Seu nome é: {Nome.nome}, Sua idade é: {Nome.idade}, Seu peso é: {Nome.peso} e Sua altura é: {Nome.altura} Metros")
