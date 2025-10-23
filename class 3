@@ -1,0 +1,31 @@
+import os 
+
+
+from dataclasses import dataclass
+
+@dataclass
+
+class Pessoa:
+    Nome: str 
+    E_mail: str
+    Endereco: str 
+    
+    
+    def dados_entrega(self):
+        print(f"Nome: {self.Nome}")
+        print(f"Endereço: {self.Endereco}") 
+        
+    def Dados_email(self):
+        print(f"Seu Nome é: {self.Nome}")
+        print(f"Seu email é: {self.E_mail}")
+              
+    
+    
+Pessoa1 =Pessoa(Nome=input("Digite seu nome: \n"),
+                    E_mail= str(input("Digite seu E-mail: \n")),
+                    Endereco= str(input("Digite seu Endereço: \n")))
+print("\n")
+
+Pessoa1.dados_entrega()
+print("\n")
+Pessoa1.Dados_email()
