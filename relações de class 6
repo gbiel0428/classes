@@ -1,0 +1,34 @@
+import os
+os.system("cls")
+
+from dataclasses import dataclass
+@dataclass
+class Endereco:
+    logradouro: str
+    Numero: str 
+    Cidade: str
+
+
+@dataclass
+
+class Programa:
+    Nome: str
+    Email: str 
+    endereco: Endereco
+    
+    def mostradados(self):
+        print(f"Seu Nome é: {self.Nome}")
+        print(f"Seu email é: {self.Email}")
+        print(f"Seu logadouro é: {self.endereco.logradouro}")
+        print(f"Seu Numero de endereço é: {self.endereco.Numero}")
+        print(f"Sua cidade é: {self.endereco.Cidade}")
+        
+
+Usuario = Programa(Nome=input("Informe o seu Nome: "),
+                   Email=input("Informe o seu Email: "),
+                   endereco=Endereco(logradouro=input("Informe Seu logadouro: "),
+                                     Numero=input("Informe o Numero da casa: "),
+                                     Cidade=input("Informe a sua Cidade: ")))
+
+os.system("cls")
+Usuario.mostradados()
