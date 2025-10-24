@@ -1,0 +1,36 @@
+import os 
+os.system("cls")
+from dataclasses import dataclass
+
+@dataclass
+
+class Pessoa:
+    Nome: str
+    CPF: str
+    Telefone: str 
+    
+
+    def mostradados(self):
+        print("=== Dados ===")
+        print(f"Seu Nome é: {self.Nome}")
+        print(f"Seu CPF é: {self.CPF} ")
+        print(f"Seu Telefone é: {self.Telefone}\n")
+    def mostrar_sms(self):
+        print(F"""O telefone de {self.Nome} é {self.Telefone}""")
+
+
+
+
+lista_pessoa = []
+
+for i in range(3):
+    Pessoa1 = Pessoa(Nome=input("Informe o seu Nome: "),
+                     CPF=input("Informe o seu CPF: "),
+                     Telefone=input("Informe o seu Telefone: "))
+    lista_pessoa.append(Pessoa1)
+    os.system("cls")
+
+for Pessoa1 in lista_pessoa:
+    Pessoa1.mostradados()
+for Pessoa1 in lista_pessoa:
+    Pessoa1.mostrar_sms()
