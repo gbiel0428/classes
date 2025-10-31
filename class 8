@@ -1,0 +1,38 @@
+import os 
+os.system("cls")
+
+from dataclasses import dataclass
+
+@dataclass
+
+class Endereco:
+    logradouro: str 
+    numero: int 
+    
+@dataclass
+
+class Pessoa:
+    nome: str 
+    idade: int 
+    endereco: Endereco
+
+
+    def mostrardados(self):
+      print(f"Seu Nome é: {self.nome}")
+      print(f"Sua Idade é: {self.idade}")
+      print(F"Seu Logradouro é: {self.endereco.logradouro}")
+      print(f"Seu Numero é: {self.endereco.numero}\n")
+
+lista_dado = []
+
+
+for i in range(2):
+    Usuario = Pessoa(nome=input("Informe o seu Nome:"),
+                  idade=input("Informe a sua Idade: "),
+                  endereco=Endereco(logradouro=input("Informe o seu Logradouro: "),
+                                    numero=input("Informe o seu Numero: ")))
+    lista_dado.append(Usuario)
+    os.system("cls")
+    
+for Usuario in lista_dado:
+    Usuario.mostrardados()
