@@ -1,0 +1,34 @@
+import os 
+os.system("cls")
+
+from dataclasses import dataclass
+
+@dataclass 
+
+class Autor:
+    nome: str 
+    biografia: str 
+    
+@dataclass
+
+class Livro:
+    titulo: str 
+    ano: int
+    autor: Autor
+    
+    def exibir_detalhes(self):
+        print(f"O Titulo do Livro é: {self.titulo}\n")
+        print(F"O Ano  de Lançamento do Livro é: {self.ano}\n")
+        print(f"O Nome do Autor do Livro é: {self.autor.nome}\n")
+        print(f"A biografia do Autor é: {self.autor.biografia}\n")
+    
+    
+    
+Usuario = Livro(titulo=input("Informe o Titulo do Livro: "),
+                ano=input("Informe o Ano do Livro: "),
+                autor=Autor(nome=input("Informe o Nome do Autor: "),
+                            biografia=input("Informe a Biografia do Autor: ")))
+os.system("cls")
+
+Usuario.exibir_detalhes()
+        
