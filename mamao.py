@@ -1,0 +1,310 @@
+import os 
+import time
+from dataclasses import dataclass
+os.system("cls")
+
+lista_cliente = [ ]
+lista_produto = [ ]
+
+@dataclass
+class Cliente:
+    nome: str 
+    email: str 
+    telefone: str 
+    endereco: str 
+    
+    def mostrar_dados_clientes(self):
+        print("--- Dados Dos Clientes --- ")
+        print(f"O Nome do Cliente é: {self.nome}")
+        print(f"O E-MAIL do Cliente é: {self.email}")
+        print(f"O Telefone do Cliente é: {self.telefone}")
+        print(f"O Endereço do Cliente é: {self.endereco}")
+            
+@dataclass
+class Produto:
+    nome: str 
+    quantidade: str 
+    lote: str 
+    validade: str 
+    
+    def mostrar_dados(self):
+        print("\n --- Dados Do Produtos --- ")
+        print(f"O Nome do Produto é: {self.nome}")
+        print(f"A Quantidade de Produto Disponiveis é: {self.quantidade}")
+        print(f"O Estoque do Produto é: {self.lote}")
+        print(f"A Validade do Produto é: {self.validade}")
+        
+# ------------------------------
+# CODIGOS PARA CLIENTES
+# ------------------------------
+
+def lista_esta_vazia2(lista_cliente):
+    if not lista_cliente:
+        print("\n Não há clientes cadastrados.")
+        return True
+    return False
+
+# Adicionar Clientes.
+
+def adicionar_cliente(lista_cliente):
+    print(f"\n === Adicionar Cliente ===")
+    nome = input("Informe o Nome do Cliente: ")
+    email = input("Informe o E-MAIL do Cliente: ")
+    telefone = input("Informe o Telefone do Cliente: ")
+    endereco = input("Informe o  Endereço do Cliente: ")
+    
+    novo_cliente = Cliente(nome=nome , email=email , telefone=telefone , endereco=endereco)
+    lista_cliente.append(novo_cliente)
+    print(f"\nCliente com o Nome: {nome} foi adicionado. ")
+    
+# Encontrar Cliente pelo Nome.
+
+def encontrar_cliente_pelo_nome(lista_cliente, nome_buscar):
+    nome_buscar_lower = nome_buscar.lower()
+    for cliente in lista_cliente:
+        if cliente.nome.lower() == nome_buscar_lower:
+            return cliente
+    return None    
+
+# Mostrar Todos os Clientes.
+
+def mostrar_todos_os_clientes(lista_clientes):
+    if lista_esta_vazia2(lista_clientes):
+        return
+    print("\n --- Lista de Clientes --- ")
+    for cliente in lista_clientes:
+        cliente.mostrar_dados_clientes()
+        
+# Atualizando os Clientes 
+
+def atualizar_clientes(lista_clientes):
+    if lista_esta_vazia2(lista_clientes):
+        return
+    
+    mostrar_todos_os_clientes(lista_clientes)
+    print("\n --- Atualizar dados dos Clientes --- ")
+    
+    nome_buscar = input("\nInforme o Nome do Cliente: ")
+    cliente_para_atualizar = encontrar_cliente_pelo_nome(lista_clientes, nome_buscar)
+    
+    if cliente_para_atualizar:
+        print("\nCliente Encontrado.")
+        print("\nInforme Novos Clientes ou Deixe os Mesmo Dados.")
+        
+        novo_nome = input("Informe o Novo Nome do Cliente: ")
+        novo_email = input("Informe o Novo E-MAIL do Cliente: ")
+        novo_telefone = input("Informe o Novo Telefone do Cliente: ")
+        novo_endereco = input("Informe um Novo Endereço do Cliente: ")
+        
+        if novo_nome:
+            cliente_para_atualizar.nome = novo_nome
+        if novo_email:
+            cliente_para_atualizar.email = novo_email
+        if novo_telefone:
+            cliente_para_atualizar.telefone = novo_telefone
+        if novo_endereco:
+            cliente_para_atualizar.endereco = novo_endereco
+            
+        print(f"\nDados do Cliente: {nome_buscar} atualizado com sucesso!")
+    else:
+        print(f"\nCliente com o Nome: {nome_buscar} não encontrado.")
+        
+# Excluir Cliente.
+
+def excluir_cliente(lista_clientes):
+    if lista_esta_vazia2(lista_clientes):
+        return
+    
+    mostrar_todos_os_clientes(lista_clientes)
+    nome_buscar = input("\nInforme o Nome do Cliente que deseja Excluir: ")
+    
+    cliente_para_remove = encontrar_cliente_pelo_nome(lista_clientes, nome_buscar)
+    
+    if cliente_para_remove:
+        lista_clientes.remove(cliente_para_remove)
+        print(f"\nCliente: {nome_buscar} excluido com sucesso!")
+    else:
+        print(f"\nCliente: {nome_buscar} não foi encontrado.")
+        
+# WHILE TRUE DO CLIENTE
+
+def volta_while():
+    while True:
+        print("""
+        --- Gerenciador de  Clientes ---
+        1 - Adicionar
+        2 - Mostrar todos
+        3 - Atualizar
+        4 - Excluir
+        5 - Sistema de Produtos
+                """)
+
+        try:
+            opcao = int(input("Informe uma das opções acima: "))
+        except ValueError:
+            print("\nEntrada inválida. Informe um número...")
+            time.sleep(2)
+            os.system("cls")
+            continue
+
+        match opcao:
+            case 1:
+                adicionar_cliente(lista_cliente)
+            case 2:
+                mostrar_todos_os_clientes(lista_cliente)
+            case 3:
+                atualizar_clientes(lista_cliente)
+            case 4:
+                excluir_cliente(lista_cliente)
+            case 5:
+                print("\n---- Sistema de Produtos ----")
+                time.sleep(1)
+                break 
+            case _:
+                print("\nOpção inválida. \nTente novamente.")
+
+        if opcao != 1 and opcao != 0:
+            time.sleep(4)
+        elif opcao == 1:
+            time.sleep(1)
+
+        if opcao != 0:
+            os.system("cls")
+
+# ----------------------------------
+# Codigos do Produto
+# ----------------------------------
+
+def lista_esta_vazia(lista_produto):
+    if not lista_produto:
+        print("\n Não há produto cadastrados.")
+        return True
+    return False
+
+# Adicionar Produto
+
+def adicionar_produto(lista_produto):
+    print("\n === Adicionar um Produto === ")
+    nome = input("Informe o Produto: ")
+    quantidade = input("Informe a Quantidade do Produto: ")
+    lote = input("Informe o Estoque do Produto: ")
+    validade = input("Informe a Validade do produto: ")
+    
+    novo_produto = Produto(nome=nome , quantidade=quantidade , lote=lote , validade=validade)
+    lista_produto.append(novo_produto)
+    print(f"\nProduto: {nome} adicionado com sucesso! ")
+
+# Encontrar Produto pelo Nome.
+
+def encontrar_produto_pelo_nome(lista_produto, nome_buscar):
+    nome_buscar_lower = nome_buscar.lower()
+    for produto in lista_produto:
+        if produto.nome.lower() == nome_buscar_lower:
+            return produto
+    return None
+
+# Mostrar Todos os Produtos
+
+def mostrar_todos_os_produto(lista_produto):
+    if lista_esta_vazia(lista_produto):
+        return
+    print("\n--- Lista de Produtos Disponivel ---")
+    for produto in lista_produto:
+        produto.mostrar_dados()
+
+# Atualizaar Produtos
+
+def atualizar_produto(lista_produto):
+    if lista_esta_vazia(lista_produto):      
+        return
+    
+    mostrar_todos_os_produto(lista_produto)
+    print("--- Atualizar os Produtos --- ")
+    
+    nome_buscar = input("\nInforme o nome do Produto: ")
+    produto_para_atualizar = encontrar_produto_pelo_nome(lista_produto , nome_buscar)
+    
+    if produto_para_atualizar:
+        print(f"=== Produto Encontrado ===")
+        print("=== Informe Novos Produtos Ou Mantenha Os Menos Valores === ")
+        
+        novo_nome = input("Informe um Produto Novo: ")
+        nova_quantidade = input("Informe uma Nova Quantidade: ")
+        novo_lote = input("Informe um Novo Lote: ")
+        nova_validade = input("Informe uma Nova Validade: ")
+        
+        if novo_nome:
+            produto_para_atualizar.nome = novo_nome
+        if nova_quantidade:
+            produto_para_atualizar.quantidade = nova_quantidade
+        if novo_lote:
+            produto_para_atualizar.lote = novo_lote
+        if nova_validade:
+            produto_para_atualizar.validade = nova_validade
+        
+        print(f"Produto com o Nome: {nome_buscar} foi Atualizado.")
+    else:
+        print(f"Produto com o Nome: {nome_buscar} não foi encontrado.")
+        
+# Excluir Produto
+
+def excluir_produto(lista_produto):
+    if lista_esta_vazia(lista_produto):
+        return
+
+    mostrar_todos_os_produto(lista_produto)
+    nome_buscar = input("\nInforme o nome do produto que deseja excluir: ")
+
+    produto_para_remove = encontrar_produto_pelo_nome(lista_produto, nome_buscar)
+
+    if produto_para_remove:
+        lista_produto.remove(produto_para_remove)
+        print(f"\nProduto '{nome_buscar}' excluído com sucesso!")
+    else:
+        print(f"\nProduto '{nome_buscar}' não encontrado.")
+        
+# WHILE DO PRODUTO
+
+while True:
+    print("""
+    --- Gerenciador de  Produtos ---
+    1 - Adicionar
+    2 - Mostrar todos
+    3 - Atualizar
+    4 - Excluir
+    5 - Sistema Cliente
+    0 - Sair
+            """)
+
+    try:
+        opcao = int(input("Informe uma das opções acima: "))
+    except ValueError:
+        print("\nEntrada inválida. Informe um número...")
+        time.sleep(3)
+        os.system("cls")
+        continue
+
+    match opcao:
+        case 1:
+            adicionar_produto(lista_produto)
+        case 2:
+            mostrar_todos_os_produto(lista_produto)
+        case 3:
+            atualizar_produto(lista_produto)
+        case 4:
+            excluir_produto(lista_produto)
+        case 5:
+            volta_while()
+        case 0:
+            print("\nSaindo do programa...")
+            break
+        case _:
+            print("\nOpção inválida. \nTente novamente.")
+
+    if opcao != 1 and opcao != 0:
+        time.sleep(4)
+    elif opcao == 1:
+        time.sleep(1)
+
+    if opcao != 0:
+        os.system("cls")
