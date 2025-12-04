@@ -31,8 +31,8 @@ class Produto:
         print("\n --- Dados Do Produtos --- ")
         print(f"O Nome do Produto é: {self.nome}")
         print(f"A Quantidade de Produto Disponiveis é: {self.quantidade}")
-        print(f"O Estoque do Produto é: {self.lote}")
-        print(f"A Validade do Produto é: {self.validade}")
+        print(f"O Lote do Produto é: {self.lote}")
+        print(f"A lot do Produto é: {self.validade}")
         
 # ------------------------------
 # CODIGOS PARA CLIENTES
@@ -127,7 +127,7 @@ def excluir_cliente(lista_clientes):
         print(f"\nCliente: {nome_buscar} não foi encontrado.")
         
 # WHILE TRUE DO CLIENTE
-#mudança
+
 def volta_while():
     while True:
         print("""
@@ -187,7 +187,7 @@ def adicionar_produto(lista_produto):
     print("\n === Adicionar um Produto === ")
     nome = input("Informe o Produto: ")
     quantidade = input("Informe a Quantidade do Produto: ")
-    lote = input("Informe o Estoque do Produto: ")
+    lote = input("Informe o Lote do Produto: ")
     validade = input("Informe a Validade do produto: ")
     
     novo_produto = Produto(nome=nome , quantidade=quantidade , lote=lote , validade=validade)
